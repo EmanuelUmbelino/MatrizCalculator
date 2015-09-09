@@ -1,0 +1,9 @@
+F:\Projetos\MatrizCalculator\MatrizCalculator\bin\Debug\MatrizCalculator.exe.config
+F:\Projetos\MatrizCalculator\MatrizCalculator\bin\Debug\MatrizCalculator.exe
+F:\Projetos\MatrizCalculator\MatrizCalculator\bin\Debug\MatrizCalculator.pdb
+F:\Projetos\MatrizCalculator\MatrizCalculator\obj\Debug\MatrizCalculator.csprojResolveAssemblyReference.cache
+F:\Projetos\MatrizCalculator\MatrizCalculator\obj\Debug\MatrizCalculator.Form1.resources
+F:\Projetos\MatrizCalculator\MatrizCalculator\obj\Debug\MatrizCalculator.Properties.Resources.resources
+F:\Projetos\MatrizCalculator\MatrizCalculator\obj\Debug\MatrizCalculator.csproj.GenerateResource.Cache
+F:\Projetos\MatrizCalculator\MatrizCalculator\obj\Debug\MatrizCalculator.exe
+F:\Projetos\MatrizCalculator\MatrizCalculator\obj\Debug\MatrizCalculator.pdb
