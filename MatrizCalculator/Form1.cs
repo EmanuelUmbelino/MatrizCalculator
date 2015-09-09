@@ -24,13 +24,13 @@ namespace MatrizCalculator
         }
         void ReloadA()
         {
-            MA = new TextBox[int.Parse(M1X.Value.ToString()), int.Parse(M1Y.Value.ToString())];
-            for (int i = 0; i < M1X.Value; i++)
+            MA = new TextBox[int.Parse(M1C.Value.ToString()),int.Parse(M1L.Value.ToString())];
+            for (int i = 0; i < M1L.Value; i++)
             {
-                for (int j = 0; j < M1Y.Value; j++)
+                for (int j = 0; j < M1C.Value; j++)
                 {
                     MA[i, j] = new TextBox();
-                    MA[i, j].Location = new Point(M1X.Location.X + i * 40, 100 + j * 30);
+                    MA[i, j].Location = new Point(M1L.Location.X + i * 40, 100 + j * 30);
                     MA[i, j].Width = 30;
                     Controls.Add(MA[i, j]);
                 }
@@ -38,13 +38,13 @@ namespace MatrizCalculator
         }
         void ReloadB()
         {
-            MB = new TextBox[int.Parse(M2X.Value.ToString()), int.Parse(M2Y.Value.ToString())];
-            for (int i = 0; i < M2X.Value; i++)
+            MB = new TextBox[int.Parse(M2C.Value.ToString()), int.Parse(M2L.Value.ToString())];
+            for (int i = 0; i < M2L.Value; i++)
             {
-                for (int j = 0; j < M2Y.Value; j++)
+                for (int j = 0; j < M2C.Value; j++)
                 {
                     MB[i, j] = new TextBox();
-                    MB[i, j].Location = new Point(M2X.Location.X + i * 40, 100 + j * 30);
+                    MB[i, j].Location = new Point(M2L.Location.X + i * 40, 100 + j * 30);
                     MB[i, j].Width = 30;
                     Controls.Add(MB[i, j]);
                 }
@@ -56,13 +56,13 @@ namespace MatrizCalculator
             {
                 Controls.Remove(text);
             }
-            MC = new TextBox[int.Parse(M3X.Text), int.Parse(M3Y.Text)];
-            for (int i = 0; i < int.Parse(M3X.Text); i++)
+            MC = new TextBox[int.Parse(M3L.Text), int.Parse(M3C.Text)];
+            for (int i = 0; i < int.Parse(M3L.Text); i++)
             {
-                for (int j = 0; j < int.Parse(M3Y.Text); j++)
+                for (int j = 0; j < int.Parse(M3C.Text); j++)
                 {
                     MC[i, j] = new TextBox();
-                    MC[i, j].Location = new Point(M3X.Location.X + i * 40, 100 + j * 30);
+                    MC[i, j].Location = new Point(M3L.Location.X + i * 40, 100 + j * 30);
                     MC[i, j].Width = 30;
                     Controls.Add(MC[i, j]);
                 }
@@ -98,16 +98,16 @@ namespace MatrizCalculator
         {
             if (Operation.Text.Equals("+") || Operation.Text.Equals("-"))
             {
-                if (M1X.Value.Equals(M2X.Value) && M1Y.Value.Equals(M2Y.Value))
+                if (M1L.Value.Equals(M2L.Value) && M1C.Value.Equals(M2C.Value))
                 {
-                    M3X.Text = M1X.Value.ToString();
-                    M3Y.Text = M1Y.Value.ToString();
+                    M3L.Text = M1L.Value.ToString();
+                    M3C.Text = M1C.Value.ToString();
                     ReloadC();
                     try
                     {
-                        for (int i = 0; i < int.Parse(M3X.Text); i++)
+                        for (int i = 0; i < int.Parse(M3L.Text); i++)
                         {
-                            for (int j = 0; j < int.Parse(M3Y.Text); j++)
+                            for (int j = 0; j < int.Parse(M3C.Text); j++)
                             {
                                 if (Operation.Text.Equals("+"))
                                     MC[i, j].Text = (int.Parse(MA[i, j].Text) + int.Parse(MB[i, j].Text)).ToString();
@@ -123,6 +123,39 @@ namespace MatrizCalculator
                 }
                 else
                     MessageBox.Show("Necessário que as duas matrizes sejam de mesmo tamanho para ocorrer essa operação.");
+            }
+            else if (Operation.Text.Equals("X"))
+            {
+                if (M1C.Value.Equals(M2L.Value))
+                {
+                    M3L.Text = M1L.Value.ToString();
+                    M3C.Text = M2C.Value.ToString();
+                    ReloadC();
+                    try
+                    {
+                        int[,] C = new int[int.Parse(M1L.Value.ToString()), int.Parse(M2C.Value.ToString())];
+                        for (int i = 0; i < M1L.Value; i++)
+                        {
+                            for (int j = 0; j < M2C.Value; j++)
+                            {
+                                for(int k = 0; k < M2L.Value; k++)
+                                {
+
+                                    MessageBox.Show("1");
+                                    C[i, j] = int.Parse(MA[i, k].Text) * int.Parse(MB[k, j].Text);
+                                    MC[i, j].Text = C[i, j].ToString();
+                                }
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Não deixe caixas vazias e insira somente números.");
+                    }
+
+                }
+                else
+                    MessageBox.Show("Número de colunas da Matriz A deve ser igual ao número de linhas da Matriz B");
             }
         }
     }

@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.M1X = new System.Windows.Forms.NumericUpDown();
-            this.M1Y = new System.Windows.Forms.NumericUpDown();
+            this.M1L = new System.Windows.Forms.NumericUpDown();
+            this.M1C = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.M2Y = new System.Windows.Forms.NumericUpDown();
-            this.M2X = new System.Windows.Forms.NumericUpDown();
+            this.M2C = new System.Windows.Forms.NumericUpDown();
+            this.M2L = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.M3X = new System.Windows.Forms.TextBox();
-            this.M3Y = new System.Windows.Forms.TextBox();
+            this.M3L = new System.Windows.Forms.TextBox();
+            this.M3C = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -50,75 +50,75 @@
             this.button5 = new System.Windows.Forms.Button();
             this.Operation = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.M1X)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.M1Y)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.M2Y)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.M2X)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.M1L)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.M1C)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.M2C)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.M2L)).BeginInit();
             this.SuspendLayout();
             // 
-            // M1X
+            // M1L
             // 
-            this.M1X.Location = new System.Drawing.Point(27, 66);
-            this.M1X.Maximum = new decimal(new int[] {
+            this.M1L.Location = new System.Drawing.Point(27, 66);
+            this.M1L.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.M1X.Minimum = new decimal(new int[] {
+            this.M1L.Minimum = new decimal(new int[] {
             2,
             0,
             0,
             0});
-            this.M1X.Name = "M1X";
-            this.M1X.Size = new System.Drawing.Size(41, 20);
-            this.M1X.TabIndex = 0;
-            this.M1X.Value = new decimal(new int[] {
+            this.M1L.Name = "M1L";
+            this.M1L.Size = new System.Drawing.Size(41, 20);
+            this.M1L.TabIndex = 0;
+            this.M1L.Value = new decimal(new int[] {
             2,
             0,
             0,
             0});
-            this.M1X.ValueChanged += new System.EventHandler(this.ChangeLengthA);
+            this.M1L.ValueChanged += new System.EventHandler(this.ChangeLengthA);
             // 
-            // M1Y
+            // M1C
             // 
-            this.M1Y.Location = new System.Drawing.Point(84, 66);
-            this.M1Y.Maximum = new decimal(new int[] {
+            this.M1C.Location = new System.Drawing.Point(84, 66);
+            this.M1C.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.M1Y.Minimum = new decimal(new int[] {
+            this.M1C.Minimum = new decimal(new int[] {
             2,
             0,
             0,
             0});
-            this.M1Y.Name = "M1Y";
-            this.M1Y.Size = new System.Drawing.Size(41, 20);
-            this.M1Y.TabIndex = 1;
-            this.M1Y.Value = new decimal(new int[] {
+            this.M1C.Name = "M1C";
+            this.M1C.Size = new System.Drawing.Size(41, 20);
+            this.M1C.TabIndex = 1;
+            this.M1C.Value = new decimal(new int[] {
             2,
             0,
             0,
             0});
-            this.M1Y.ValueChanged += new System.EventHandler(this.ChangeLengthA);
+            this.M1C.ValueChanged += new System.EventHandler(this.ChangeLengthA);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 50);
+            this.label1.Location = new System.Drawing.Point(24, 50);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(14, 13);
+            this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "X";
+            this.label1.Text = "Linhas";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(97, 50);
+            this.label2.Location = new System.Drawing.Point(86, 50);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(14, 13);
+            this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Y";
+            this.label2.Text = "Colunas";
             // 
             // label3
             // 
@@ -143,66 +143,66 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(560, 50);
+            this.label5.Location = new System.Drawing.Point(544, 50);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(14, 13);
+            this.label5.Size = new System.Drawing.Size(45, 13);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Y";
+            this.label5.Text = "Colunas";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(499, 50);
+            this.label6.Location = new System.Drawing.Point(487, 50);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(14, 13);
+            this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 7;
-            this.label6.Text = "X";
+            this.label6.Text = "Linhas";
             // 
-            // M2Y
+            // M2C
             // 
-            this.M2Y.Location = new System.Drawing.Point(547, 66);
-            this.M2Y.Maximum = new decimal(new int[] {
+            this.M2C.Location = new System.Drawing.Point(547, 66);
+            this.M2C.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.M2Y.Minimum = new decimal(new int[] {
+            this.M2C.Minimum = new decimal(new int[] {
             2,
             0,
             0,
             0});
-            this.M2Y.Name = "M2Y";
-            this.M2Y.Size = new System.Drawing.Size(41, 20);
-            this.M2Y.TabIndex = 6;
-            this.M2Y.Value = new decimal(new int[] {
+            this.M2C.Name = "M2C";
+            this.M2C.Size = new System.Drawing.Size(41, 20);
+            this.M2C.TabIndex = 6;
+            this.M2C.Value = new decimal(new int[] {
             2,
             0,
             0,
             0});
-            this.M2Y.ValueChanged += new System.EventHandler(this.ChangeLengthB);
+            this.M2C.ValueChanged += new System.EventHandler(this.ChangeLengthB);
             // 
-            // M2X
+            // M2L
             // 
-            this.M2X.Location = new System.Drawing.Point(490, 66);
-            this.M2X.Maximum = new decimal(new int[] {
+            this.M2L.Location = new System.Drawing.Point(490, 66);
+            this.M2L.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.M2X.Minimum = new decimal(new int[] {
+            this.M2L.Minimum = new decimal(new int[] {
             2,
             0,
             0,
             0});
-            this.M2X.Name = "M2X";
-            this.M2X.Size = new System.Drawing.Size(41, 20);
-            this.M2X.TabIndex = 5;
-            this.M2X.Value = new decimal(new int[] {
+            this.M2L.Name = "M2L";
+            this.M2L.Size = new System.Drawing.Size(41, 20);
+            this.M2L.TabIndex = 5;
+            this.M2L.Value = new decimal(new int[] {
             2,
             0,
             0,
             0});
-            this.M2X.ValueChanged += new System.EventHandler(this.ChangeLengthB);
+            this.M2L.ValueChanged += new System.EventHandler(this.ChangeLengthB);
             // 
             // label7
             // 
@@ -217,36 +217,36 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(961, 50);
+            this.label9.Location = new System.Drawing.Point(948, 50);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(14, 13);
+            this.label9.Size = new System.Drawing.Size(38, 13);
             this.label9.TabIndex = 17;
-            this.label9.Text = "X";
+            this.label9.Text = "Linhas";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1022, 50);
+            this.label8.Location = new System.Drawing.Point(1007, 50);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(14, 13);
+            this.label8.Size = new System.Drawing.Size(45, 13);
             this.label8.TabIndex = 18;
-            this.label8.Text = "Y";
+            this.label8.Text = "Colunas";
             // 
-            // M3X
+            // M3L
             // 
-            this.M3X.Location = new System.Drawing.Point(942, 66);
-            this.M3X.Name = "M3X";
-            this.M3X.ReadOnly = true;
-            this.M3X.Size = new System.Drawing.Size(44, 20);
-            this.M3X.TabIndex = 20;
+            this.M3L.Location = new System.Drawing.Point(942, 66);
+            this.M3L.Name = "M3L";
+            this.M3L.ReadOnly = true;
+            this.M3L.Size = new System.Drawing.Size(44, 20);
+            this.M3L.TabIndex = 20;
             // 
-            // M3Y
+            // M3C
             // 
-            this.M3Y.Location = new System.Drawing.Point(1008, 66);
-            this.M3Y.Name = "M3Y";
-            this.M3Y.ReadOnly = true;
-            this.M3Y.Size = new System.Drawing.Size(44, 20);
-            this.M3Y.TabIndex = 21;
+            this.M3C.Location = new System.Drawing.Point(1008, 66);
+            this.M3C.Name = "M3C";
+            this.M3C.ReadOnly = true;
+            this.M3C.Size = new System.Drawing.Size(44, 20);
+            this.M3C.TabIndex = 21;
             // 
             // button1
             // 
@@ -326,27 +326,27 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.M3Y);
-            this.Controls.Add(this.M3X);
+            this.Controls.Add(this.M3C);
+            this.Controls.Add(this.M3L);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.M2Y);
-            this.Controls.Add(this.M2X);
+            this.Controls.Add(this.M2C);
+            this.Controls.Add(this.M2L);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.M1Y);
-            this.Controls.Add(this.M1X);
+            this.Controls.Add(this.M1C);
+            this.Controls.Add(this.M1L);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.M1X)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.M1Y)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.M2Y)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.M2X)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.M1L)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.M1C)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.M2C)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.M2L)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -354,21 +354,21 @@
 
         #endregion
 
-        private System.Windows.Forms.NumericUpDown M1X;
-        private System.Windows.Forms.NumericUpDown M1Y;
+        private System.Windows.Forms.NumericUpDown M1L;
+        private System.Windows.Forms.NumericUpDown M1C;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown M2Y;
-        private System.Windows.Forms.NumericUpDown M2X;
+        private System.Windows.Forms.NumericUpDown M2C;
+        private System.Windows.Forms.NumericUpDown M2L;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox M3X;
-        private System.Windows.Forms.TextBox M3Y;
+        private System.Windows.Forms.TextBox M3L;
+        private System.Windows.Forms.TextBox M3C;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
