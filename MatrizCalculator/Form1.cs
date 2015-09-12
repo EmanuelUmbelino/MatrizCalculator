@@ -37,7 +37,9 @@ namespace MatrizCalculator
         caso tenha valores anteriores, ele os coloca na matriz*/
         void ReloadA(TextBox[,] lastValues)
         {
-            MA = new TextBox[int.Parse(M1C.Value.ToString()),int.Parse(M1L.Value.ToString())];
+            MA = new TextBox[int.Parse(M1C.Value.ToString()), int.Parse(M1L.Value.ToString())];
+            if (TabControl.SelectedIndex.Equals(2))
+                MA = new TextBox[int.Parse(M1C_.Value.ToString()), int.Parse(M1L_.Value.ToString())];
             for (int i = 0; i < M1C.Value; i++)
             {
                 for (int j = 0; j < M1L.Value; j++)
@@ -45,7 +47,10 @@ namespace MatrizCalculator
                     MA[i, j] = new TextBox();
                     MA[i, j].Location = new Point(M1L.Location.X + i * 40, 100 + j * 30);
                     MA[i, j].Width = 30;
-                    tabPage1.Controls.Add(MA[i, j]);
+                    if (TabControl.SelectedIndex.Equals(2))
+                        tabPage3.Controls.Add(MA[i, j]);
+                    else
+                        tabPage1.Controls.Add(MA[i, j]);
                     try
                     {
                         MA[i, j].Text = lastValues[i, j].Text;
@@ -84,7 +89,13 @@ namespace MatrizCalculator
             {
                 tabPage1.Controls.Remove(text);
             }
-            MC = new TextBox[int.Parse(M3C.Text), int.Parse(M3L.Text)];
+            if (TabControl.SelectedIndex.Equals(2))
+            {
+                MC = new TextBox[int.Parse(M3C_.Text), int.Parse(M3L_.Text)];
+                M3C.Text = M3C_.Text; M3L.Text = M3L_.Text;
+            }
+            else
+                MC = new TextBox[int.Parse(M3C.Text), int.Parse(M3L.Text)];
             for (int i = 0; i < int.Parse(M3C.Text); i++)
             {
                 for (int j = 0; j < int.Parse(M3L.Text); j++)
@@ -92,9 +103,17 @@ namespace MatrizCalculator
                     MC[i, j] = new TextBox();
                     MC[i, j].Location = new Point(M3L.Location.X + i * 40, 100 + j * 30);
                     MC[i, j].Width = 30;
-                    tabPage1.Controls.Add(MC[i, j]);
+                    if (TabControl.SelectedIndex.Equals(2))
+                        tabPage3.Controls.Add(MC[i, j]);
+                    else
+                        tabPage1.Controls.Add(MC[i, j]);
                 }
             }
+        }
+        // atualizar o tamanho da Matriz A no Outros
+        private void ChangeLenghtOther(object sender, EventArgs e)
+        {
+            M1C.Value = M1C_.Value; M1L.Value = M1L_.Value;
         }
         // atualizar o tamanho da Matriz A
         /*explicaçao
@@ -107,6 +126,7 @@ namespace MatrizCalculator
             foreach (TextBox text in MA)
             {
                 tabPage1.Controls.Remove(text);
+                tabPage3.Controls.Remove(text);
             }
             ReloadA(MT);
 
@@ -129,7 +149,6 @@ namespace MatrizCalculator
             Operation.Text = clicked.Text;
         }
         // resolver as operações 
-        ///!!!! AINDA COM ERRO !!!!
         // explicação ao longo
         private void Solution(object sender, EventArgs e)
         {
@@ -209,12 +228,11 @@ namespace MatrizCalculator
                                 }
                             }
                         }
-                        // o erro esta que acontece se o numero de colunas do segundo for maior que o numero de linhas que o primeiro esta aqui
                         else
                         {
-                            for (int i = 0; i < M1L.Value; i++)
+                            for (int i = 0; i < M2C.Value; i++)
                             {
-                                for (int j = 0; j < M2C.Value; j++)
+                                for (int j = 0; j < M1L.Value; j++)
                                 {
                                     for (int k = 0; k < M2L.Value; k++)
                                     {
@@ -337,8 +355,8 @@ namespace MatrizCalculator
         {
             Button clicked = sender as Button;
             // troca para a pagina de desenho e chama a funçao dependendo de qual botao foi clicado
-            tabControl1.SelectedIndex = 1;
-            if (clicked.Name.Equals("Draw1"))
+            TabControl.SelectedIndex = 1;
+            if (clicked.Name.Equals("Draw1") || clicked.Name.Equals("Draw1T"))
                 drawOne();
             else if (clicked.Name.Equals("Draw2"))
                 drawTwo();
@@ -362,19 +380,19 @@ namespace MatrizCalculator
         // desenhar linhas da Matriz A
         /*explicaçao
          pega a caneta e seta sua cor
-         chama a funçao de desenhar linha, pega os valores do ponto atual e do proximo ponto
+         chama a funçao de desenhar linha, pega os valores do ponto atual e do proximo ponto, invertendo o eixo y
          desenha coordenadas nele*/
         void drawOne()
         {
             myPen = new System.Drawing.Pen(System.Drawing.Color.Red);
             for (int i = 0; i < M1C.Value - 1; i++)
             {
-                formGraphics.DrawLine(myPen, int.Parse(MA[i, 0].Text), int.Parse(MA[i, 1].Text), int.Parse(MA[i + 1, 0].Text), int.Parse(MA[i + 1, 1].Text));
-                writeCoordenates(int.Parse(MA[i, 0].Text), int.Parse(MA[i, 1].Text));
+                formGraphics.DrawLine(myPen, int.Parse(MA[i, 0].Text), tabPage1.Height - int.Parse(MA[i, 1].Text), int.Parse(MA[i + 1, 0].Text), tabPage1.Height - int.Parse(MA[i + 1, 1].Text));
+                writeCoordenates(int.Parse(MA[i, 0].Text), tabPage1.Height - int.Parse(MA[i, 1].Text));
             }
             // esse é separado pois tem que pegar o primeiro ponto
-            formGraphics.DrawLine(myPen, int.Parse(MA[int.Parse(M1C.Value.ToString()) - 1, 0].Text), int.Parse(MA[int.Parse(M1C.Value.ToString()) - 1, 1].Text), int.Parse(MA[0, 0].Text), int.Parse(MA[0, 1].Text));
-            writeCoordenates(int.Parse(MA[int.Parse(M1C.Value.ToString())-1, 0].Text), int.Parse(MA[int.Parse(M1C.Value.ToString())-1, 1].Text));
+            formGraphics.DrawLine(myPen, int.Parse(MA[int.Parse(M1C.Value.ToString()) - 1, 0].Text), tabPage1.Height - int.Parse(MA[int.Parse(M1C.Value.ToString()) - 1, 1].Text), int.Parse(MA[0, 0].Text), tabPage1.Height - int.Parse(MA[0, 1].Text));
+            writeCoordenates(int.Parse(MA[int.Parse(M1C.Value.ToString()) - 1, 0].Text), tabPage1.Height - int.Parse(MA[int.Parse(M1C.Value.ToString()) - 1, 1].Text));
         }
         // desenhar linhas da Matriz B
         void drawTwo()
@@ -382,12 +400,12 @@ namespace MatrizCalculator
             myPen = new System.Drawing.Pen(System.Drawing.Color.Blue);
             for (int i = 0; i < M2C.Value - 1; i++)
             {
-                formGraphics.DrawLine(myPen, int.Parse(MB[i, 0].Text), int.Parse(MB[i, 1].Text), int.Parse(MB[i + 1, 0].Text), int.Parse(MB[i + 1, 1].Text));
-                writeCoordenates(int.Parse(MB[i, 0].Text), int.Parse(MB[i, 1].Text));
+                formGraphics.DrawLine(myPen, int.Parse(MB[i, 0].Text), tabPage1.Height - int.Parse(MB[i, 1].Text), int.Parse(MB[i + 1, 0].Text), tabPage1.Height - int.Parse(MB[i + 1, 1].Text));
+                writeCoordenates(int.Parse(MB[i, 0].Text), tabPage1.Height - int.Parse(MB[i, 1].Text));
             }
             // esse é separado pois tem que pegar o primeiro ponto
-            formGraphics.DrawLine(myPen, int.Parse(MB[int.Parse(M2C.Value.ToString()) - 1, 0].Text), int.Parse(MB[int.Parse(M2C.Value.ToString()) - 1, 1].Text), int.Parse(MB[0, 0].Text), int.Parse(MB[0, 1].Text));
-            writeCoordenates(int.Parse(MB[int.Parse(M2C.Value.ToString()) - 1, 0].Text), int.Parse(MB[int.Parse(M2C.Value.ToString()) - 1, 1].Text));
+            formGraphics.DrawLine(myPen, int.Parse(MB[int.Parse(M2C.Value.ToString()) - 1, 0].Text), tabPage1.Height - int.Parse(MB[int.Parse(M2C.Value.ToString()) - 1, 1].Text), int.Parse(MB[0, 0].Text), tabPage1.Height - int.Parse(MB[0, 1].Text));
+            writeCoordenates(int.Parse(MB[int.Parse(M2C.Value.ToString()) - 1, 0].Text), tabPage1.Height - int.Parse(MB[int.Parse(M2C.Value.ToString()) - 1, 1].Text));
         }
         // desenhar linhas da Matriz C
         void drawThree()
@@ -395,17 +413,109 @@ namespace MatrizCalculator
             myPen = new System.Drawing.Pen(System.Drawing.Color.Green);
             for (int i = 0; i < int.Parse(M3C.Text) - 1; i++)
             {
-                formGraphics.DrawLine(myPen, int.Parse(MC[i, 0].Text), int.Parse(MC[i, 1].Text), int.Parse(MC[i + 1, 0].Text), int.Parse(MC[i + 1, 1].Text));
-                writeCoordenates(int.Parse(MC[i, 0].Text), int.Parse(MC[i, 1].Text));
+                formGraphics.DrawLine(myPen, int.Parse(MC[i, 0].Text), tabPage1.Height - int.Parse(MC[i, 1].Text), int.Parse(MC[i + 1, 0].Text), tabPage1.Height - int.Parse(MC[i + 1, 1].Text));
+                writeCoordenates(int.Parse(MC[i, 0].Text), tabPage1.Height - int.Parse(MC[i, 1].Text));
             }
             // esse é separado pois tem que pegar o primeiro ponto
-            formGraphics.DrawLine(myPen, int.Parse(MC[int.Parse(M3C.Text) - 1, 0].Text), int.Parse(MC[int.Parse(M3C.Text) - 1, 1].Text), int.Parse(MC[0, 0].Text), int.Parse(MC[0, 1].Text));
-            writeCoordenates(int.Parse(MC[int.Parse(M3C.Text) - 1, 0].Text), int.Parse(MC[int.Parse(M3C.Text) - 1, 1].Text));
+            formGraphics.DrawLine(myPen, int.Parse(MC[int.Parse(M3C.Text) - 1, 0].Text), tabPage1.Height - int.Parse(MC[int.Parse(M3C.Text) - 1, 1].Text), int.Parse(MC[0, 0].Text), tabPage1.Height - int.Parse(MC[0, 1].Text));
+            writeCoordenates(int.Parse(MC[int.Parse(M3C.Text) - 1, 0].Text), tabPage1.Height - int.Parse(MC[int.Parse(M3C.Text) - 1, 1].Text));
         }
-        // quando sai da tela de desenho, deleta as matrizes que estavam escritas
+        // quando troca de tela
+        /*explicacao
+         limpa a tela desenho
+         remove todas as textbox
+         atualiza as textbox para ficarem do mesmo tamanho nas telas*/
         private void Clear(object sender, TabControlEventArgs e)
         {
             tabPage2.Controls.Clear();
+
+            foreach (TextBox text in MA)
+            {
+                tabPage1.Controls.Remove(text);
+                tabPage3.Controls.Remove(text);
+            }
+            if (TabControl.SelectedIndex.Equals(2))
+            {
+                M1C_.Value = M1C.Value; M1L_.Value = M1L.Value;
+                ReloadA(MA);
+            }
+            else if (TabControl.SelectedIndex.Equals(0))
+            {
+                M1C.Value = M1C_.Value; M1L.Value = M1L_.Value;
+                ReloadA(MA);
+            }
         }
+
+        private void SolutionOther(object sender, EventArgs e)
+        {
+            Button clicked = sender as Button;
+            if (clicked.Text.Equals("X"))
+            {
+                try
+                {
+                    // seta o tamanho da matriz do resultado e carrega as textbox
+                    M3C_.Text = M1C_.Value.ToString();
+                    M3L_.Text = M1L_.Value.ToString();
+                    ReloadC();
+                    //multiplica cada bloco da matriz e os coloca na textbox certa.
+                    for (int i = 0; i < int.Parse(M3C_.Text); i++)
+                    {
+                        for (int j = 0; j < int.Parse(M3L_.Text); j++)
+                        {
+                            MC[i, j].Text = (int.Parse(MA[i, j].Text) * int.Parse(value.Text)).ToString();
+                        }
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Não deixe caixas vazias e insira somente números. Lembre-se de colocar um valor para ser multiplicado");
+                }
+            }
+            else if (clicked.Text.Equals("Det"))
+            {
+                if (M1L_.Value.Equals(M1C_.Value))
+                {
+                    double[,] MT = new double[int.Parse(M1C_.Text), int.Parse(M1L_.Text)];
+                    for (int i = 0; i < int.Parse(M1C_.Text); i++)
+                    {
+                        for (int j = 0; j < int.Parse(M1L_.Text); j++)
+                        {
+                            MT[i, j] = int.Parse(MA[i, j].Text);
+                        }
+                    }
+                    value.Text = DET(MT,int.Parse(M1C_.Value.ToString())).ToString();
+                }
+                else
+                    MessageBox.Show("Matriz deve ser quadrada");
+            }
+        }
+        
+        double DET(double[,] mat, int ord)
+        {
+            double myDet = 0;
+            if (ord.Equals(2)) 
+                return (mat[0,0] * mat[1,1] - mat[1,0] * mat[0,1]);  
+            else 
+            {
+                double[,] matAux = new double[ord - 1, ord - 1];  
+                int colAux = 0;  
+  
+                for (int i = 0; i < ord; i++) {  
+  
+                    for (int linha = 1; linha < ord; linha++) {  
+                        for (int coluna = 0; coluna < ord; coluna++)  
+                            if (i != coluna)  
+                                matAux[linha - 1,colAux++] = mat[linha,coluna];  
+  
+                        colAux = 0;  
+                    }  
+                  
+                    if (mat[0,i] != 0)
+                        myDet += (int)Math.Pow((-1), i) * mat[0, i] * DET(matAux, ord - 1);  
+                }  
+            }
+            return (myDet);  
+        }  
+
     }
 }
