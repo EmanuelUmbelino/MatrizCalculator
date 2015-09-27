@@ -204,9 +204,9 @@ namespace MatrizCalculator
                             for (int j = 0; j < int.Parse(M3L.Text); j++)
                             {
                                 if (Operation.Text.Equals("+"))
-                                    MC[i, j].Text = (int.Parse(MA[i, j].Text) + int.Parse(MB[i, j].Text)).ToString();
+                                    MC[i, j].Text = (double.Parse(MA[i, j].Text) + double.Parse(MB[i, j].Text)).ToString();
                                 else
-                                    MC[i, j].Text = (int.Parse(MA[i, j].Text) - int.Parse(MB[i, j].Text)).ToString();
+                                    MC[i, j].Text = (double.Parse(MA[i, j].Text) - double.Parse(MB[i, j].Text)).ToString();
                             }
                         }
                     }
@@ -231,7 +231,7 @@ namespace MatrizCalculator
                     try
                     {
                         // variavel onde fica armazenado o resultado antes de colocar na matriz
-                        int[,] C = new int[int.Parse(M2C.Value.ToString()), int.Parse(M1L.Value.ToString())]; 
+                        double[,] C = new double[int.Parse(M2C.Value.ToString()), int.Parse(M1L.Value.ToString())]; 
                         //solução para o problema da multiplicacao não pegar todos os valores
                         // faz a logica para executar uma multiplicaçao de matrizes
                         if (M1L.Value == M2C.Value)
@@ -242,7 +242,7 @@ namespace MatrizCalculator
                                 {
                                     for (int k = 0; k < M2L.Value; k++)
                                     {
-                                        C[i, j] += int.Parse(MA[k, j].Text) * int.Parse(MB[i, k].Text);
+                                        C[i, j] += double.Parse(MA[k, j].Text) * double.Parse(MB[i, k].Text);
                                         MC[i, j].Text = C[i, j].ToString();
                                     }
                                 }
@@ -256,7 +256,7 @@ namespace MatrizCalculator
                                 {
                                     for (int k = 0; k < M2L.Value; k++)
                                     {
-                                        C[i, j] += int.Parse(MA[k, j].Text) * int.Parse(MB[i, k].Text);
+                                        C[i, j] += double.Parse(MA[k, j].Text) * double.Parse(MB[i, k].Text);
                                         MC[i, j].Text = C[i, j].ToString();
                                     }
                                 }
@@ -270,7 +270,7 @@ namespace MatrizCalculator
                                 {
                                     for (int k = 0; k < M2L.Value; k++)
                                     {
-                                        C[i, j] += int.Parse(MA[k, j].Text) * int.Parse(MB[i, k].Text);
+                                        C[i, j] += double.Parse(MA[k, j].Text) * double.Parse(MB[i, k].Text);
                                         MC[i, j].Text = C[i, j].ToString();
                                     }
                                 }
@@ -459,28 +459,7 @@ namespace MatrizCalculator
         {
             tabPage5.Controls.Clear();
         }
-
-        double Invert()
-        {
-            if (M1L_.Value.Equals(M1C_.Value))
-            {
-                double[,] MT = new double[int.Parse(M1C_.Text), int.Parse(M1L_.Text)];
-                for (int i = 0; i < int.Parse(M1C_.Text); i++)
-                {
-                    for (int j = 0; j < int.Parse(M1L_.Text); j++)
-                    {
-                        MT[i, j] = int.Parse(MA[i, j].Text);
-                    }
-                }
-                value.Text = DET(MT, int.Parse(M1C_.Value.ToString())).ToString();
-            }
-
-            float FirstValue = 1 / int.Parse(value.Text);
-            float Adjunt = 2;
-            float Inver = FirstValue * Adjunt;
-            return Inver;
-        }
-
+        // soluções em uma matriz
         private void SolutionOther(object sender, EventArgs e)
         {
             Button clicked = sender as Button;
@@ -498,9 +477,9 @@ namespace MatrizCalculator
                         for (int j = 0; j < int.Parse(M3L_.Text); j++)
                         {
                             if (value.Text.Equals("") || value.Text.Equals(null))
-                                MF[i, j].Text = (int.Parse(MO[i, j].Text) * 0).ToString();
+                                MF[i, j].Text = (double.Parse(MO[i, j].Text) * 0).ToString();
                             else
-                                MF[i, j].Text = (int.Parse(MO[i, j].Text) * int.Parse(value.Text)).ToString();
+                                MF[i, j].Text = (double.Parse(MO[i, j].Text) * double.Parse(value.Text)).ToString();
                         }
                     }
                 }
@@ -511,16 +490,19 @@ namespace MatrizCalculator
             }
             else if (clicked.Text.Equals("Det"))
             {
+                // verifica se é quadrada
                 if (M1L_.Value.Equals(M1C_.Value))
                 {
+                    //cria uma matriz e seta os valores para serem a da matriz que usaremos
                     double[,] MT = new double[int.Parse(M1C_.Text), int.Parse(M1L_.Text)];
                     for (int i = 0; i < int.Parse(M1C_.Text); i++)
                     {
                         for (int j = 0; j < int.Parse(M1L_.Text); j++)
                         {
-                            MT[i, j] = int.Parse(MO[i, j].Text);
+                            MT[i, j] = double.Parse(MO[i, j].Text);
                         }
                     }
+                    // escreve na caixa de texto o retorno da det
                     value.Text = DET(MT,int.Parse(M1C_.Value.ToString())).ToString();
                 }
                 else
@@ -528,52 +510,136 @@ namespace MatrizCalculator
             }
             else if (clicked.Text.Equals("Inver"))
             {
-                //if(value.Text == "")
-                try
+                //verifica se é quadrada   
+                if (M1L_.Value.Equals(M1C_.Value))
                 {
-                    // seta o tamanho da matriz do resultado e carrega as textbox
-                    M3C_.Text = M1C_.Value.ToString();
-                    M3L_.Text = M1L_.Value.ToString();
-                    ReloadC();
-                    //faz a divisao de um pela determinante da matriz digitada vezes a matriz adjunta(realizada a partir da matriz de cofaores)
-                    //cada bloco da matriz e os coloca na textbox certa.
-                    for (int i = 0; i < int.Parse(M3C_.Text); i++)
+                    //cria uma matriz e seta os valores para serem a da matriz que usaremos
+                    double[,] MT = new double[int.Parse(M1C_.Text), int.Parse(M1L_.Text)];
+                    for (int i = 0; i < int.Parse(M1C_.Text); i++)
                     {
-                        for (int j = 0; j < int.Parse(M3L_.Text); j++)
+                        for (int j = 0; j < int.Parse(M1L_.Text); j++)
                         {
-                            MC[i, j].Text = Invert().ToString()/*(int.Parse(MA[i, j].Text) * int.Parse(value.Text)).ToString()*/;
+                            MT[i, j] = double.Parse(MO[i, j].Text);
                         }
                     }
+                    //pega o determinante da matriz e colona na caixa de texto
+                    double det = DET(MT, int.Parse(M1C_.Value.ToString()));
+                    value.Text = det.ToString();
+                    // verifica se é inversivel
+                    if (det != 0)
+                    {
+                        // seta o tamanho da matriz do resultado
+                        M3C_.Text = M1C_.Value.ToString();
+                        M3L_.Text = M1L_.Value.ToString();
+                        ReloadF();
+                        // pega a inversa e coloca em cada caixa de texto
+                        MT = Invert(det,MT,int.Parse(M3C_.Text));
+                        for (int i = 0; i < int.Parse(M3C_.Text); i++)
+                        {
+                            for (int j = 0; j < int.Parse(M3L_.Text); j++)
+                            {
+                                MF[i, j].Text = MT[i, j].ToString();
+                            }
+                        }
+                    }
+                    else
+                        MessageBox.Show("Essa Matriz é Singular");
                 }
-                catch { }
+                else
+                    MessageBox.Show("Matriz deve ser quadrada");
+
             }
         }
-        
+        // determinante
         double DET(double[,] mat, int ord)
         {
+            // pede uma matriz e seu tamanho
+            // se ela for 2x2, retorna do jeito simples
             double myDet = 0;
-            if (ord.Equals(2)) 
-                return (mat[0,0] * mat[1,1] - mat[1,0] * mat[0,1]);  
-            else 
+            if (ord.Equals(2))
+                return (mat[0, 0] * mat[1, 1] - mat[1, 0] * mat[0, 1]);
+            // se ela for 1x1, retorna ela msm
+            else if (ord.Equals(1))
+                return (mat[0, 0]);
+            else
             {
-                double[,] matAux = new double[ord - 1, ord - 1];  
-                int colAux = 0;  
-  
-                for (int i = 0; i < ord; i++) {  
-  
-                    for (int linha = 1; linha < ord; linha++) {  
-                        for (int coluna = 0; coluna < ord; coluna++)  
-                            if (i != coluna)  
-                                matAux[linha - 1,colAux++] = mat[linha,coluna];  
-  
-                        colAux = 0;  
-                    }  
-                  
-                    if (mat[0,i] != 0)
-                        myDet += (int)Math.Pow((-1), i) * mat[0, i] * DET(matAux, ord - 1);  
-                }  
+                double[,] matAux = new double[ord - 1, ord - 1];
+                int colAux = 0;
+
+                for (int i = 0; i < ord; i++)
+                {
+
+                    for (int linha = 1; linha < ord; linha++)
+                    {
+                        for (int coluna = 0; coluna < ord; coluna++)
+                        {
+                            if (i != coluna)
+                                matAux[linha - 1, colAux++] = mat[linha, coluna];
+                        }
+
+                        colAux = 0;
+                    }
+
+                    if (mat[0, i] != 0)
+                        myDet += (int)Math.Pow((-1), i) * mat[0, i] * DET(matAux, ord - 1);
+                }
             }
             return (myDet);
+        }
+        // inversa
+        double[,] Invert(double det, double[,] mat, int ord)
+        {
+            // pede o det de uma matriz, essa matriz e seu tamanho
+            // o valor a ser multiplicado, matriz cofator dessa matriz, matriz adjunta e matriz inversa
+            double FirstValue = 1 / double.Parse(det.ToString());
+            double[,] cof = Cofatores(mat, ord);
+            double[,] Adjunt = cof;
+            double[,] Inver = Adjunt;
+            // seta q a matriz adjunta é a transposta da cofator
+            // seta q a inversa é o produto do valor a ser multiplicado com a adjunta
+            for (int i = 0; i < ord; i++)
+            {
+                for (int j = 0; j < ord; j++)
+                {
+                    Adjunt[i, j] = cof[j, i];
+                    Inver[i, j] = FirstValue * Adjunt[i, j];
+                }
+            }
+            return Inver;
+        }
+        // matriz de cofatores
+        double[,] Cofatores(double[,] mat, int ord)
+        {
+            MessageBox.Show(ord.ToString());
+            // pede uma matriz e seu tamanho
+            // determina uma matriz auxiliar com o mesmo tamanho
+            double[,] matAux = new double[ord, ord];  
+            for (int linha = 0; linha < ord; linha++)
+            {
+                for (int coluna = 0; coluna < ord; coluna++)
+                {
+                    //para cada valor da matriz original, cria-se uma matriz igual, excluindo-se todos os valores da linha e coluna desse valor.
+                    double[,] sub = new double[ord - 1, ord - 1];
+                    int C = 0;
+                    int L = 0;
+                    for (int i = 0; i < ord; i++)
+                    {
+                        if (i.Equals(linha)) continue;
+                        for (int j = 0; j < ord; j++)
+                        {
+                            if (j.Equals(coluna)) continue;
+                            sub[L, C] = mat[i, j];
+                            C++;
+                        }
+                        L++;
+                        C = 0;
+                    }
+                    // determina que no lugar daqle valor fica o determinante da matriz criada pra ele, multiplicada por -1 elevado a soma da linha e coluna dele
+                    matAux[linha,coluna] = Math.Pow(-1,linha+coluna)*DET(sub, ord - 1);
+
+                }
+            }
+            return matAux;
         }
 
     }
