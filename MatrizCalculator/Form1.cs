@@ -402,16 +402,76 @@ namespace MatrizCalculator
         {
             Button clicked = sender as Button;
             drawCartesian();
-            try { drawLines(M1C.Value, MA); }
-            catch { MessageBox.Show("Insira Valores na Matriz A"); }
-            try { drawLines(M2C.Value, MB); }
-            catch { MessageBox.Show("Insira Valores na Matriz B"); }
-            try { drawLines(decimal.Parse(M3C.Text), MC); }
-            catch { MessageBox.Show("Insira Valores na Matriz C"); }
-            try { drawLines(M1C_.Value, MO); }
-            catch { MessageBox.Show("Insira Valores na Matriz O"); }
-            try { drawLines(decimal.Parse(M3C_.Text), MF); }
-            catch { MessageBox.Show("Insira Valores na Matriz F"); }
+            try
+            {
+                Color color = CreateRandomColor();
+                drawLines(M1C.Value, MA, color);
+                Label myLine = legA;
+                myLine.Text = "Matriz A";
+                myLine.ForeColor = color;
+            }
+            catch
+            {
+                Label myLine = legA;
+                myLine.Text = "Matriz A cant load";
+                myLine.ForeColor = Color.Black;
+            }
+            try 
+            {
+                Color color = CreateRandomColor();
+                drawLines(M2C.Value, MB,color); 
+                Label myLine = legB;
+                myLine.Text = "Matriz B";
+                myLine.ForeColor = color;
+            }
+            catch
+            {
+                Label myLine = legB;
+                myLine.Text = "Matriz B cant load";
+                myLine.ForeColor = Color.Black;
+            }
+            try
+            {
+                Color color = CreateRandomColor();
+                drawLines(decimal.Parse(M3C.Text), MC, color);
+                Label myLine = legC;
+                myLine.Text = "Matriz C";
+                myLine.ForeColor = color;
+            }
+            catch
+            {
+                Label myLine = legC;
+                myLine.Text = "Matriz C cant load";
+                myLine.ForeColor = Color.Black;
+            }
+            try
+            {
+                Color color = CreateRandomColor();
+                drawLines(M1C_.Value, MO,color);
+                Label myLine = legO;
+                myLine.Text = "Matriz O";
+                myLine.ForeColor = color;
+            }
+            catch
+            {
+                Label myLine = legO;
+                myLine.Text = "Matriz O cant load";
+                myLine.ForeColor = Color.Black;
+            }
+            try
+            {
+                Color color = CreateRandomColor();
+                drawLines(decimal.Parse(M3C_.Text), MF,color);
+                Label myLine = legF;
+                myLine.Text = "Matriz F";
+                myLine.ForeColor = color;
+            }
+            catch
+            {
+                Label myLine = legF;
+                myLine.Text = "Matriz F cant load";
+                myLine.ForeColor = Color.Black;
+            }
             
         }
         // sortear cor
@@ -427,9 +487,8 @@ namespace MatrizCalculator
          pega a caneta e seta sua cor
          chama a funçao de desenhar linha, pega os valores do ponto atual e do proximo ponto, invertendo o eixo y
          desenha coordenadas nele*/
-        void drawLines(decimal MCValue, TextBox[,] M)
+        void drawLines(decimal MCValue, TextBox[,] M, Color color)
         {
-            Color color = CreateRandomColor();
             myPen = new System.Drawing.Pen(System.Drawing.Color.Red);
             myPen.Color = color;
             int multiply = 5;
@@ -458,6 +517,16 @@ namespace MatrizCalculator
         private void Clear(object sender, TabControlEventArgs e)
         {
             tabPage5.Controls.Clear();
+            legA.Text = "...";
+            legA.ForeColor = Color.Black;
+            legB.Text = "...";
+            legB.ForeColor = Color.Black;
+            legC.Text = "...";
+            legC.ForeColor = Color.Black;
+            legO.Text = "...";
+            legO.ForeColor = Color.Black;
+            legF.Text = "...";
+            legF.ForeColor = Color.Black;
         }
         // soluções em uma matriz
         private void SolutionOther(object sender, EventArgs e)

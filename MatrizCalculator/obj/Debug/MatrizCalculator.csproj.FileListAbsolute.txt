@@ -25,3 +25,7 @@ F:\Projetos\MatrizCalculator-master\MatrizCalculator\obj\Debug\MatrizCalculator.
 F:\Projetos\MatrizCalculator-master\MatrizCalculator\obj\Debug\MatrizCalculator.Form1.resources
 F:\Projetos\MatrizCalculator-master\MatrizCalculator\obj\Debug\MatrizCalculator.Properties.Resources.resources
 F:\Projetos\MatrizCalculator-master\MatrizCalculator\obj\Debug\MatrizCalculator.csproj.GenerateResource.Cache
+F:\Projetos\MatrizCalculator\MatrizCalculator\bin\Debug\MatrizCalculator.exe.manifest
+F:\Projetos\MatrizCalculator\MatrizCalculator\bin\Debug\MatrizCalculator.application
+F:\Projetos\MatrizCalculator\MatrizCalculator\obj\Debug\MatrizCalculator.exe.manifest
+F:\Projetos\MatrizCalculator\MatrizCalculator\obj\Debug\MatrizCalculator.application
