@@ -7,3 +7,7 @@ F:\Projetos\MatrizCalculator\MatrizCalculator\obj\Release\MatrizCalculator.Prope
 F:\Projetos\MatrizCalculator\MatrizCalculator\obj\Release\MatrizCalculator.csproj.GenerateResource.Cache
 F:\Projetos\MatrizCalculator\MatrizCalculator\obj\Release\MatrizCalculator.exe
 F:\Projetos\MatrizCalculator\MatrizCalculator\obj\Release\MatrizCalculator.pdb
+F:\Projetos\MatrizCalculator\MatrizCalculator\bin\Release\MatrizCalculator.exe.manifest
+F:\Projetos\MatrizCalculator\MatrizCalculator\bin\Release\MatrizCalculator.application
+F:\Projetos\MatrizCalculator\MatrizCalculator\obj\Release\MatrizCalculator.exe.manifest
+F:\Projetos\MatrizCalculator\MatrizCalculator\obj\Release\MatrizCalculator.application

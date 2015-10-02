@@ -375,7 +375,7 @@ namespace MatrizCalculator
             
         }
         // desenhar o texto das coordenadas dos pontos
-        void writeCoordenates(int a, int b)
+        /*void writeCoordenates(int a, int b)
         {
             Label[] backUp = Coordenadas;
             // recebe as coordenadas, seta a localizacao, adiciona o texto e o desenha na pagina
@@ -396,7 +396,7 @@ namespace MatrizCalculator
             Coordenadas[Coordenadas.Length - 1].Text = "[" + a + "," + b + "]";
             Coordenadas[Coordenadas.Length - 1].SendToBack();
             tabPage5.Controls.Add(Coordenadas[Coordenadas.Length-1]);
-        }
+        }*/
         // chamar as funçoes de desenho
         private void draw(object sender, EventArgs e)
         {
@@ -404,7 +404,7 @@ namespace MatrizCalculator
             drawCartesian();
             try
             {
-                Color color = CreateRandomColor();
+                Color color = Color.Red;
                 drawLines(M1C.Value, MA, color);
                 Label myLine = legA;
                 myLine.Text = "Matriz A";
@@ -418,7 +418,7 @@ namespace MatrizCalculator
             }
             try 
             {
-                Color color = CreateRandomColor();
+                Color color = Color.Blue;
                 drawLines(M2C.Value, MB,color); 
                 Label myLine = legB;
                 myLine.Text = "Matriz B";
@@ -432,7 +432,7 @@ namespace MatrizCalculator
             }
             try
             {
-                Color color = CreateRandomColor();
+                Color color = Color.Green;
                 drawLines(decimal.Parse(M3C.Text), MC, color);
                 Label myLine = legC;
                 myLine.Text = "Matriz C";
@@ -446,7 +446,7 @@ namespace MatrizCalculator
             }
             try
             {
-                Color color = CreateRandomColor();
+                Color color = Color.Pink;
                 drawLines(M1C_.Value, MO,color);
                 Label myLine = legO;
                 myLine.Text = "Matriz O";
@@ -460,7 +460,7 @@ namespace MatrizCalculator
             }
             try
             {
-                Color color = CreateRandomColor();
+                Color color = Color.PowderBlue;
                 drawLines(decimal.Parse(M3C_.Text), MF,color);
                 Label myLine = legF;
                 myLine.Text = "Matriz F";
@@ -473,14 +473,6 @@ namespace MatrizCalculator
                 myLine.ForeColor = Color.Black;
             }
             
-        }
-        // sortear cor
-        private Color CreateRandomColor()
-        {
-            Random randonGen = new Random();
-            Color randomColor = Color.FromArgb(randonGen.Next(255), randonGen.Next(255), randonGen.Next(255));
-
-            return randomColor;
         }
         // desenhar linhas da Matriz
         /*explicaçao
@@ -496,12 +488,10 @@ namespace MatrizCalculator
             {
                 formGraphics.DrawLine(myPen, int.Parse(M[i, 0].Text) * multiply + tabPage5.Width / 2, tabPage5.Height - int.Parse(M[i, 1].Text) * multiply - tabPage5.Height/2,
                     int.Parse(M[i + 1, 0].Text) * multiply + tabPage5.Width / 2, tabPage5.Height - int.Parse(M[i + 1, 1].Text) * multiply - tabPage5.Height/2);
-                writeCoordenates(int.Parse(M[i, 0].Text), int.Parse(M[i, 1].Text));
             }
             // esse é separado pois tem que pegar o primeiro ponto
             formGraphics.DrawLine(myPen, int.Parse(M[int.Parse(MCValue.ToString()) - 1, 0].Text) * multiply + tabPage5.Width / 2, tabPage5.Height - int.Parse(M[int.Parse(MCValue.ToString()) - 1, 1].Text) * multiply- tabPage5.Height/2,
                 int.Parse(M[0, 0].Text) * multiply + tabPage5.Width / 2, tabPage5.Height - int.Parse(M[0, 1].Text) * multiply- tabPage5.Height/2);
-            writeCoordenates(int.Parse(M[int.Parse(MCValue.ToString()) - 1, 0].Text), int.Parse(M[int.Parse(MCValue.ToString()) - 1, 1].Text));
         }
         void drawCartesian()
         {
@@ -679,7 +669,6 @@ namespace MatrizCalculator
         // matriz de cofatores
         double[,] Cofatores(double[,] mat, int ord)
         {
-            MessageBox.Show(ord.ToString());
             // pede uma matriz e seu tamanho
             // determina uma matriz auxiliar com o mesmo tamanho
             double[,] matAux = new double[ord, ord];  
